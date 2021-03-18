@@ -1,0 +1,6 @@
+description: >
+  Build pkgdown website.
+steps:
+  - run:
+      name: Build pkgdown
+      command: <<include(scripts/pkgdown-build.sh)>>

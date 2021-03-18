@@ -1,0 +1,11 @@
+description: >
+  rocker R image.
+docker:
+  - image: 'r-base:<<parameters.tag>>'
+parameters:
+  tag:
+    default: "4.0.4"
+    description: >
+      Pick a specific R version:
+      https://hub.docker.com/_/r-base
+    type: string

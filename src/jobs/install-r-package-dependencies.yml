@@ -1,0 +1,22 @@
+description: >
+  Install R package system and R dependencies.
+  Store them in ".cache/renv"
+# What will this job do?
+# Descriptions should be short, simple, and clear.
+
+executor: default
+
+# R_LIBS=".cache/rpkg_deps" 
+# R_LIBS_USER=".cache/rpkg_deps" 
+# RENV_PATHS_CACHE=".cache/renv"
+
+environment:
+  - RENV_PATHS_CACHE: .cache/renv
+
+steps:
+  - install-system-dependencies
+  - install-r-dependencies
+  - persist_to_workspace:
+      root: ./
+      paths:
+        - ".cache/renv"

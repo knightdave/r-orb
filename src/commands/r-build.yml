@@ -1,0 +1,6 @@
+description: >
+  Build R project.
+steps:
+  - run:
+      name: Build R project
+      command: <<include(scripts/r-build.sh)>>

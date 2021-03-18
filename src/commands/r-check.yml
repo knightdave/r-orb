@@ -1,0 +1,6 @@
+description: >
+  Check R package.
+steps:
+  - run:
+      name: Build R package
+      command: <<include(scripts/r-check.sh)>>

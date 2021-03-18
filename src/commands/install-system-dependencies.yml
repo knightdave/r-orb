@@ -1,0 +1,9 @@
+description: >
+  Install R system dependencies.
+
+  You need properly setup system dependencies in
+  DESCRIPTION file.
+steps:
+  - run:
+      name: Install R system dependencies
+      command: <<include(scripts/install-system-dependencies.sh)>>

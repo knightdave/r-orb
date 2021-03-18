@@ -1,0 +1,6 @@
+description: >
+  Run lintr.
+steps:
+  - run:
+      name: Run lintr
+      command: <<include(scripts/lintr.sh)>>

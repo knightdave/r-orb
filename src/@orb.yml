@@ -1,0 +1,8 @@
+version: 2.1
+
+description: >
+  Easily install and test your R project with caching enabled by default.
+
+display:
+  home_url: "https://www.website.com/docs"
+  source_url: "https://www.github.com/EXAMPLE_ORG/EXAMPLE_PROJECT"

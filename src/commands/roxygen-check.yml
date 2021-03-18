@@ -1,0 +1,6 @@
+description: >
+  Check do manuals upto date with roxygen comments.
+steps:
+  - run:
+      name: Check Roxygen
+      command: <<include(scripts/roxygen-check.sh)>>

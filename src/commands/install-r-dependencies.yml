@@ -1,0 +1,8 @@
+description: >
+  Install R dependencies with renv.
+  You need `renv.lock` file in your project
+  https://rstudio.github.io/renv/articles/renv.html
+steps:
+  - run:
+      name: Install R dependencies
+      command: <<include(scripts/install-r-dependencies.sh)>>
