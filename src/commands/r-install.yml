@@ -1,0 +1,6 @@
+description: >
+  Install R package from current project.
+steps:
+  - run:
+      name: Install R package
+      command: <<include(scripts/r-install.sh)>>
