@@ -1,13 +1,22 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Simply build, check and test installation of R package on many R versions.
+
 usage:
   version: 2.1
   orbs:
-    r-orb knightdave/r-orb@1.2.3
+    r-orb: knightdave/r-orb@1.0.0
   workflows:
-    use-my-orb:
+    simple-build:
       jobs:
-        - r-orb/<job-name>
+        - r-orb/install-r-package-dependencies:
+            name: install-r-package-dependencies-v<< matrix.version >>
+            matrix:
+              parameters:
+                version: ["3.5.3", "3.6.3", "4.0.4"]
+        - r-orb/build-check-install:
+            name: build-check-install-v<< matrix.version >>
+            matrix:
+              parameters:
+                version: ["3.5.3", "3.6.3", "4.0.4"]
+            requires:
+              - install-r-package-dependencies-v<< matrix.version >>

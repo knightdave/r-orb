@@ -1,0 +1,13 @@
+description: >
+  Lint R project with lintr
+
+executor: default
+
+# parameters:
+#   path:
+#     type: string
+#     default: "."
+#     description: "Path to run lint"
+steps:
+  - checkout
+  - lintr

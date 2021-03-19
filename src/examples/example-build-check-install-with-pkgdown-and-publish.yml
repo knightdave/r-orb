@@ -1,13 +1,19 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Build and check your R project with pkgdown build and publish to ghpages.
+
 usage:
   version: 2.1
   orbs:
-    r-orb knightdave/r-orb@1.2.3
+    r-orb: knightdave/r-orb@1.0.0
+    gh-pages: sugarshin/gh-pages@0.0.6
   workflows:
-    use-my-orb:
+    simple-build:
       jobs:
-        - r-orb/<job-name>
+        - r-orb/build-check-install
+        - r-orb/pkgdown
+        - gh-pages/deploy:
+            build-dir: docs/docs
+            requires:
+              - r-orb/pkgdown
+            ssh-fingerprints: 'ff:22:gs:v6:gg:2g:22:7j:73:gf:ja:36:ff:y2:22:89'
+

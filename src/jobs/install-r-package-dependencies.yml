@@ -14,6 +14,7 @@ environment:
   - RENV_PATHS_CACHE: .cache/renv
 
 steps:
+  - checkout
   - install-system-dependencies
   - install-r-dependencies
   - persist_to_workspace:

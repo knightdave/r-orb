@@ -1,13 +1,13 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Build and check your R project with pkgdown build.
+
 usage:
   version: 2.1
   orbs:
-    r-orb knightdave/r-orb@1.2.3
+    r-orb: knightdave/r-orb@1.0.0
   workflows:
-    use-my-orb:
+    simple-build:
       jobs:
-        - r-orb/<job-name>
+        - r-orb/build-check-install
+        - r-orb/pkgdown
+

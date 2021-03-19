@@ -1,0 +1,13 @@
+description: >
+  Check do manuals upto date with roxygen comments
+
+executor: default
+
+# parameters:
+#   path:
+#     type: string
+#     default: "."
+#     description: "Path to run lint"
+steps:
+  - checkout
+  - roxygen-check

@@ -1,13 +1,81 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Build and check your R project with dependencies
+  on different images based on branch.
+
 usage:
   version: 2.1
   orbs:
-    r-orb knightdave/r-orb@1.2.3
+    r-orb: knightdave/r-orb@1.0.0
   workflows:
-    use-my-orb:
+    simple-build:
       jobs:
-        - r-orb/<job-name>
+        # ------ DEV ------ #
+        - r-orb/install-r-package-dependencies:
+            name: install-r-package-dependencies-dev
+            image: "r-base-dev"
+            version: "3.6.3"
+            filters:
+              branches:
+                ignore:
+                  - pre-release
+                  - /^prf.*/
+                  - master
+        - r-orb/build-check-install:
+            name: build-check-install-dev
+            image: "r-base-dev"
+            version: "3.6.3"
+            filters:
+              branches:
+                ignore:
+                  - pre-release
+                  - /^prf.*/
+                  - master
+            requires:
+              - install-r-package-dependencies-dev
+        # ------ END DEV ------ #
+
+        # ------ PRE-RELEASE ------ #
+        - r-orb/install-r-package-dependencies:
+            name: install-r-package-dependencies-pre-release
+            image: "r-base"
+            version: "3.6.3"
+            filters:
+              branches:
+                only:
+                  - pre-release
+                  - /^prf.*/
+        - r-orb/build-check-install:
+            name: build-check-install-pre-release
+            image: "r-base-pre-release"
+            version: "3.6.3"
+            filters:
+              branches:
+                only:
+                  - pre-release
+                  - /^prf.*/
+            requires:
+              - install-r-package-dependencies-pre-release
+        # ------ END PRE-RELEASE ------ #
+
+        # ------ MASTER ------ #
+        - r-orb/install-r-package-dependencies:
+            name: install-r-package-dependencies-master
+            image: "r-base-master"
+            version: "3.6.3"
+            filters:
+              tags:
+                only: /^v.*/
+              branches:
+                only: master
+        - r-orb/build-check-install:
+            name: build-check-install-master
+            image: "r-base-master"
+            version: "3.6.3"
+            filters:
+              tags:
+                only: /^v.*/
+              branches:
+                only: master
+            requires:
+              - install-r-package-dependencies-master
+      # ------ END MASTER ------ #
